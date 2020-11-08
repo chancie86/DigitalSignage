@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ConfigSchema"
+    targetNamespace="http://citrix.com/Display/ConfigSchema.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://citrix.com/Display/ConfigSchema.xsd"
+    xmlns:mstns="http://citrix.com/Display/ConfigSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="Config">
+    <xs:complexType>
+      <xs:all>
+
+        <xs:element name="Roles" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Role" minOccurs="0" maxOccurs="unbounded" type="RoleType" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="PowerPoints" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PowerPoint" minOccurs="0" maxOccurs="unbounded" type="PowerPointType" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        
+        <xs:element name="Slideshows" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Slideshow" minOccurs="0" maxOccurs="unbounded" type="SlideshowType" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="BuildServers" minOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BuildJobs" type="BuildJobsType" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="DisplayIntervalInSeconds" type="xs:integer" default="180" />
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="DailyImages" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:choice>
+              <xs:element name="DailyImage" type="DailyImageType" minOccurs="0" maxOccurs="unbounded" />
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="Clocks" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Clock" type="ClockType" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="DisplayIntervalInSeconds" type="xs:integer" default="90" />
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="Websites" minOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Website" type="WebsiteType" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="Moneypennys" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:attribute name="DisplayIntervalInSeconds" type="xs:integer" default="90" />
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="Weather" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:attribute name="DisplayIntervalInSeconds" type="xs:integer" default="90" />
+            <xs:attribute name="Location" type="xs:string" use="required" />
+            <xs:attribute name="Units" type="UnitsType" use="required" />
+          </xs:complexType>
+        </xs:element>
+        
+        <xs:element name="Traffic" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Location" type="LocationType" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="Calendar" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:attribute name="DisplayIntervalInSeconds" type="xs:integer" default="30" />
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="Twitter" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Query" type="TwitterQueryType" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="RoleType">
+    <xs:sequence>
+      <xs:element name="User" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="Id" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="UserType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="Domain" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="RoleAssignmentType">
+    <xs:attribute name="Roles" type="xs:string" use="optional" />
+  </xs:complexType>
+
+  <xs:complexType name="PowerPointType">
+    <xs:complexContent>
+      <xs:extension base="RoleAssignmentType">
+        <xs:attribute name="DisplayIntervalInSeconds" type="xs:integer" default="180" />
+        <xs:attribute name="Path" type="PathType" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="SlideshowType">
+    <xs:complexContent>
+      <xs:extension base="RoleAssignmentType">
+        <xs:attribute name="DisplayIntervalInSeconds" type="xs:integer" default="180" />
+        <xs:attribute name="Path" type="PathType" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="JobType">
+    <xs:attribute name="Type" type="BuildServerSourceType" use="required" />
+    <xs:attribute name="Id" type="xs:token" use="optional" />
+  </xs:complexType>
+
+  <xs:complexType name="BuildJobsType">
+    <xs:complexContent>
+      <xs:extension base="RoleAssignmentType">
+        <xs:sequence>
+          <xs:element name="Job" type="JobType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="Title" type="xs:string" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DailyImageType">
+    <xs:complexContent>
+      <xs:extension base="RoleAssignmentType">
+        <xs:attribute name="DisplayIntervalInSeconds" type="xs:integer" default="180" />
+        <xs:attribute name="Source" type="DailyImageSourceType" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ClockType">
+    <xs:complexContent>
+      <xs:extension base="RoleAssignmentType">
+        <xs:attribute name="Name" type="xs:string" />
+        <xs:attribute name="TimeZone" type="TimeZoneType" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="WebsiteType">
+    <xs:complexContent>
+      <xs:extension base="RoleAssignmentType">
+        <xs:attribute name="Url" type="xs:string" use="required" />
+        <xs:attribute name="Browser" type="BrowserType" use="required" />
+        <xs:attribute name="DisplayIntervalInSeconds" type="xs:integer" default="120" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="PathType">
+    <xs:restriction base="xs:token">
+      <xs:minLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="DailyImageSourceType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Dilbert" />
+      <xs:enumeration value="XKCD" />
+      <xs:enumeration value="CommitStrip" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="BuildServerSourceType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Jenkins" />
+      <xs:enumeration value="TeamCityBuildJob" />
+      <xs:enumeration value="TeamCityProject" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="TimeZoneType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Pacific Standard Time" />
+      <xs:enumeration value="Eastern Standard Time" />
+      <xs:enumeration value="India Standard Time" />
+      <xs:enumeration value="China Standard Time" />
+      <xs:enumeration value="GMT Standard Time" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="UnitsType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Imperial" />
+      <xs:enumeration value="Metric" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="BrowserType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="IE" />
+      <xs:enumeration value="Chrome" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="TwitterQueryType">
+    <xs:complexContent>
+      <xs:extension base="RoleAssignmentType">
+        <xs:attribute name="DisplayIntervalInSeconds" type="xs:integer" default="90" />
+        <xs:attribute name="Value" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="LocationType">
+    <xs:complexContent>
+      <xs:extension base="RoleAssignmentType">
+        <xs:attribute name="DisplayIntervalInSeconds" type="xs:integer" default="90" />
+        <xs:attribute name="GooglePlaceId" type="xs:string" use="required" />
+        <xs:attribute name="Title" type="xs:string" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+    
+</xs:schema>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Moneypennys xmlns="http://citrix.com/Display/MoneypennysSchema.xsd">
+  <Monday>
+    Salad
+  </Monday>
+  <Tuesday>
+    Pasta
+  </Tuesday>
+  <Wednesday>
+    Mmm, roast!
+  </Wednesday>
+  <Thursday>
+    Curry time!
+  </Thursday>
+  <Friday>
+    Summer Vegetable Soup (V)
+    
+    Moneypennys Burger Bar (homemade minced chuck burgers or chilli burgers)
+    
+    Veggie Burger (V) (veggie burgers topped with mozzarella and beef tomatoes)
+    
+    Chips/Burger Buns/Sauces Selection of Salads
+    
+    Bread and Butter Pudding (V)
+  </Friday>
+</Moneypennys>

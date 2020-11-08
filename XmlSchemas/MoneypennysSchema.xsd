@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ConfigSchema"
+    targetNamespace="http://citrix.com/Display/MoneypennysSchema.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://citrix.com/Display/MoneypennysSchema.xsd"
+    xmlns:mstns="http://citrix.com/Display/MoneypennysSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="Moneypennys">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Monday" type="xs:string" minOccurs="1" maxOccurs="1" />
+        <xs:element name="Tuesday" type="xs:string" minOccurs="1" maxOccurs="1" />
+        <xs:element name="Wednesday" type="xs:string" minOccurs="1" maxOccurs="1" />
+        <xs:element name="Thursday" type="xs:string" minOccurs="1" maxOccurs="1" />
+        <xs:element name="Friday" type="xs:string" minOccurs="1" maxOccurs="1" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

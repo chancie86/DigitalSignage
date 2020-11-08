@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="Display.Controls.AnalogueClock"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:Display.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             SizeChanged="AnalogueClock_OnSizeChanged">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="BorderFill" Color="LightGray" />
+        <SolidColorBrush x:Key="BorderRim" Color="DarkGray" />
+
+        <Style x:Key="MinuteHandStyle" TargetType="Rectangle">
+            <Setter Property="Stroke" Value="LightGreen" />
+            <Setter Property="Fill" Value="LightGreen" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsDay, RelativeSource={RelativeSource AncestorType=controls:AnalogueClock, Mode=FindAncestor}}" Value="True">
+                    <Setter Property="Stroke" Value="DarkGreen" />
+                    <Setter Property="Fill" Value="DarkGreen" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="HourHandStyle" TargetType="Rectangle">
+            <Setter Property="Stroke" Value="LightYellow" />
+            <Setter Property="Fill" Value="LightYellow" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsDay, RelativeSource={RelativeSource AncestorType=controls:AnalogueClock, Mode=FindAncestor}}" Value="True">
+                    <Setter Property="Stroke" Value="SlateGray" />
+                    <Setter Property="Fill" Value="SlateGray" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="TimeTextStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="LightGray" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsDay, RelativeSource={RelativeSource AncestorType=controls:AnalogueClock, Mode=FindAncestor}}" Value="True">
+                    <Setter Property="Foreground" Value="DarkSlateGray" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <SolidColorBrush x:Key="NameTextBrush" Color="White" />
+
+        <LinearGradientBrush x:Key="DayFaceBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Offset="0" Color="White" />
+            <GradientStop Offset="0.3" Color="Yellow" />
+            <GradientStop Offset="1" Color="OrangeRed" />
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="NightFaceBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Offset="0.6" Color="DarkBlue" />
+            <GradientStop Offset="1" Color="Black" />
+        </LinearGradientBrush>
+
+        <Style x:Key="ClockFace" TargetType="Ellipse">
+            <Setter Property="Stroke" Value="{StaticResource BorderFill}" />
+            <Setter Property="Fill" Value="{StaticResource NightFaceBrush}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsDay, RelativeSource={RelativeSource AncestorType=controls:AnalogueClock, Mode=FindAncestor}}" Value="True">
+                    <Setter Property="Fill" Value="{StaticResource DayFaceBrush}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        
+        <Grid RowSpan="3">
+            <Ellipse Fill="{StaticResource BorderRim}" />
+            <Ellipse Style="{StaticResource ClockFace}" StrokeThickness="5" Margin="2" />
+        </Grid>
+
+        <StackPanel Grid.Row="1">
+            <TextBlock Name="DigitalTime" Style="{StaticResource TimeTextStyle}" FontSize="30" HorizontalAlignment="Center" />
+            <TextBlock Name="FaceText" Style="{StaticResource TimeTextStyle}" HorizontalAlignment="Center" />
+        </StackPanel>
+
+        <TextBlock Name="ClockNameText" Grid.Row="2" FontSize="20" Foreground="{StaticResource NameTextBrush}" HorizontalAlignment="Center" />
+
+        <Grid RowSpan="3">
+            <!-- Second 
+            <Rectangle Margin="150,0,149,150" Name="rectangleSecond" Stroke="White" Height="120" VerticalAlignment="Bottom">
+                <Rectangle.RenderTransform>
+                    <RotateTransform x:Name="secondHand" CenterX="0" CenterY="120" Angle="0" />
+                </Rectangle.RenderTransform>
+            </Rectangle>
+             -->
+
+            <!-- Hour  -->
+            <Rectangle Name="rectangleHour" Width="4" Style="{StaticResource HourHandStyle}">
+                <Rectangle.RenderTransform>
+                    <RotateTransform x:Name="hourHandTransform" />
+                </Rectangle.RenderTransform>
+            </Rectangle>
+
+            <!-- Minute  -->
+            <Rectangle Name="rectangleMinute" Width="2" Style="{StaticResource MinuteHandStyle}">
+                <Rectangle.RenderTransform>
+                    <RotateTransform x:Name="minuteHandTransform" />
+                </Rectangle.RenderTransform>
+            </Rectangle>
+        </Grid>
+    </Grid>
+</UserControl>

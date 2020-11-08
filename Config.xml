@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Config xmlns="http://citrix.com/Display/ConfigSchema.xsd">
+
+  <Roles>
+    <!-- The Role Id should be supplied to the "Roles" attribute on the displays below, separated by semicolon -->
+    <Role Id="Dev">
+      <User Domain="chancies">chanc</User>
+    </Role>
+    <!--<Role Id="Sys2Loc">
+      <User Domain="xdcore">display2</User>
+    </Role>
+    <Role Id="REFS">
+      <User Domain="xdcore">display_refs</User>
+    </Role>-->
+  </Roles>
+
+  <Slideshows>
+    <!--<Slideshow DisplayIntervalInSeconds="40" Path="Eng Images" Roles="Dev;Sys2Loc" />
+    <Slideshow DisplayIntervalInSeconds="40" Path="Chalfont Images" Roles="Dev;Sys2Loc" />
+    <Slideshow DisplayIntervalInSeconds="40" Path="Refs Images" Roles="Dev;Sys2Loc" />
+    <Slideshow DisplayIntervalInSeconds="40" Path="System 2 Images" Roles="Sys2Loc" />-->
+  </Slideshows>
+
+  <!--
+  To add new TeamCity jobs, you need to obtain their build ID from here:
+  https://ftltc01.eng.citrite.net/guestAuth/app/rest/projects
+  -->
+  <BuildServers DisplayIntervalInSeconds="180">
+    <!--
+    <BuildJobs Title="Main" Roles="Sys2Loc;Dev">
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_Main_Broker" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_Main_ManagementConsole" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_Main_Layout" />
+      <Job Type="TeamCityProject" Id="XAXD_OnPrem_Main" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_Main_OnPremBVTClean" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_Main_Broker" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_Main_ManagementConsole" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_Main_Layout" />
+      <Job Type="TeamCityProject" Id="XAXD_Cloud_Main" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_Main_CloudBVTClean" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_Main_CloudBVTUpgrade" />
+    </BuildJobs>
+    <BuildJobs Title="BugFixUK" Roles="Sys2Loc;Dev">
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_BugFixUk_Broker" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_BugFixUk_ManagementConsole" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_BugFixUk_Layout" />
+      <Job Type="TeamCityProject" Id="XAXD_OnPrem_BugFixUk" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_BugFixUk_OnPremBVTClean" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_BugFixUk_Broker" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_BugFixUk_ManagementConsole" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_BugFixUk_Layout" />
+      <Job Type="TeamCityProject" Id="XAXD_Cloud_BugFixUk" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_BugFixUk_CloudBVTClean" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_BugFixUk_CloudBVTUpgrade" />
+    </BuildJobs>
+    <BuildJobs Title="FeatureChalfont" Roles="Sys2Loc;Dev">
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_FeatureChalfont_Broker" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_FeatureChalfont_ManagementConsole" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_FeatureChalfont_Layout" />
+      <Job Type="TeamCityProject" Id="XAXD_OnPrem_FeatureChalfont" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_FeatureChalfont_OnPremBVTClean" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_FeatureChalfont_Broker" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_FeatureChalfont_ManagementConsole" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_FeatureChalfont_Layout" />
+      <Job Type="TeamCityProject" Id="XAXD_Cloud_FeatureChalfont" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_FeatureChalfont_CloudBVTClean" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_FeatureChalfont_CloudBVTUpgrade" />
+    </BuildJobs>
+    <BuildJobs Title="FeatureChalfont Integration" Roles="Dev">
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_FeatureChalfontIntegration_Broker" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_FeatureChalfontIntegration_ManagementConsole" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_FeatureChalfontIntegration_Layout" />
+      <Job Type="TeamCityProject" Id="XAXD_OnPrem_FeatureChalfontIntegration" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_FeatureChalfontIntegration_OnPremBVTClean" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_FeatureChalfontIntegration_Broker" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_FeatureChalfontIntegration_ManagementConsole" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_FeatureChalfontIntegration_Layout" />
+      <Job Type="TeamCityProject" Id="XAXD_Cloud_FeatureChalfontIntegration" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_FeatureChalfontIntegration_CloudBVTClean" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_FeatureChalfontIntegration_CloudBVTUpgrade" />
+    </BuildJobs>
+    <BuildJobs Title="WebStudio" Roles="Sys2Loc;Dev">
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_FeatureWebStudioXA1388_NSwagGenerator" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_FeatureWebStudioXA1388_Orchestration" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_FeatureWebStudioXA1388_Trust" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_FeatureWebStudioXA1388_WebStudio" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_FeatureWebStudioXA1388_OnPremBVTClean" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_OnPrem_FeatureWebStudioXA1388_OnPremBVTUpgradeReport" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_FeatureWebStudioXA1388_NSwagGenerator" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_FeatureWebStudioXA1388_Orchestration" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_FeatureWebStudioXA1388_Trust" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_FeatureWebStudioXA1388_WebStudio" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_FeatureWebStudioXA1388_CloudBVTClean" />
+      <Job Type="TeamCityBuildJob" Id="XAXD_Cloud_FeatureWebStudioXA1388_CloudBVTUpgrade" />
+    </BuildJobs>
+    -->
+  </BuildServers>
+
+  <DailyImages>
+    <DailyImage Source="Dilbert" DisplayIntervalInSeconds="150" />
+    <DailyImage Source="XKCD" DisplayIntervalInSeconds="150" />
+    <DailyImage Source="CommitStrip" DisplayIntervalInSeconds="10" />
+  </DailyImages>
+
+  <Clocks DisplayIntervalInSeconds="90">
+    <!--
+    <Clock Name="Santa Clara" TimeZone="Pacific Standard Time" Roles="Sys2Loc;Dev" />
+    <Clock Name="Fort Lauderdale" TimeZone="Eastern Standard Time" Roles="Sys2Loc;Dev" />
+    <Clock Name="Bangalore" TimeZone="India Standard Time" Roles="Sys2Loc;Dev" />
+    <Clock Name="China" TimeZone="China Standard Time" Roles="Sys2Loc;Dev" />
+    -->
+  </Clocks>
+
+
+  <!--<Moneypennys DisplayIntervalInSeconds="90" />-->
+
+  <!--<Calendar DisplayIntervalInSeconds="10" />-->
+
+  <!-- Obtain place id from: https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder -->
+  <!--<Traffic DisplayIntervalInSeconds="120" Title="Local Traffic (Cambridge)" GooglePlaceId="ChIJLQEq84ld2EcRIT1eo-Ego2M"/>
+  <Traffic GooglePlaceId="ChIJ2ZV7d7NodkgRAV1KM8cegR4" Title="Local Traffic (Chalfont)" DisplayIntervalInSeconds="120" />-->
+
+  <!--<Weather DisplayIntervalInSeconds="120" Location="Chalfont St Peter, UK" Units="Metric" />-->
+
+  <PowerPoints>
+    <!--<PowerPoint Path="\\display\Display\PowerPoints\OFFICEDETAILS.pptx" DisplayIntervalInSeconds="180" Roles="REFS" />-->
+    <!--<PowerPoint Path="\\display\Display\PowerPoints\Paddington UK Sales Office power point presentation.pptx" DisplayIntervalInSeconds="20" Roles="Dev;REFS" />-->
+  </PowerPoints>
+
+  <Websites>
+    <!--<Website Url="http://10.30.60.49:3030/chfscr" Browser="Chrome" DisplayIntervalInSeconds="120" />
+    <Website Url="https://info.citrite.net/download/attachments/1253133499/WINDOWS%20APPLICATION%20DELIVERY%20Release%20Status%2012%20Feb%202016.htm?api=v2" Browser="Chrome" DisplayIntervalInSeconds="90" />
+    <Website Url="http://automation.eng.citrite.net/Dashboard/ProductDashboard.aspx?ProjectName=XenApp/XenDesktop#cmToggle=1&amp;qualityTab=%23defectAnalysisQualityModuleID" Browser="IE" DisplayIntervalInSeconds="90" />
+    <Website Url="http://automation.eng.citrite.net/Dashboard/ProductDashboard.aspx?ProjectName=XenApp/XenDesktop#cmTab=%23bugsmanager" Browser="IE" DisplayIntervalInSeconds="90" />-->
+    <!--    <Website Url="https://pokevision.com/&#35;/@51&#46;5975076703815,&#45;0&#46;5456793308258057" Browser="IE" DisplayIntervalInSeconds="90" Roles="Dev" />-->
+    <!--<Website Url="http://10.30.60.49:3030/chfscr" Browser="Chrome" DisplayIntervalInSeconds="120" />-->
+    <!--<Website Url="http://status.cloud.com" Browser="Chrome" DisplayIntervalInSeconds="90" />-->
+  </Websites>
+
+  <Twitter>
+    
+    <!--<Query DisplayIntervalInSeconds="150" Value="@citrix" Roles="Sys2Loc;Dev" />
+    <Query DisplayIntervalInSeconds="150" Value="#xendesktop" Roles="Sys2Loc;Dev" />
+    <Query DisplayIntervalInSeconds="150" Value="@CitrixBlogs" Roles="Sys2Loc;Dev" />
+    <Query DisplayIntervalInSeconds="150" Value="@reillyusa" Roles="Sys2Loc;Dev" />-->
+    
+  </Twitter>
+
+</Config>

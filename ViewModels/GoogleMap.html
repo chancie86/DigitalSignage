@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      html, body { height: 100%; margin: 0; padding: 0; }
+      #map { height: 100%; }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script type="text/javascript">
+
+        var map;
+        var infowindow;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 13,
+                mapTypeId: google.maps.MapTypeId.HYBRID
+            });
+
+            var request = {
+                placeId: '/*#PLACE_ID#*/'
+            };
+
+            infowindow = new google.maps.InfoWindow();
+
+            var service = new google.maps.places.PlacesService(map);
+            service.getDetails(request, serviceGetDetailsCallback);
+
+            var trafficLayer = new google.maps.TrafficLayer();
+            trafficLayer.setMap(map);
+        }
+
+
+        // Checks that the PlacesServiceStatus is OK, and adds a marker
+        // using the place ID and location from the PlacesService.
+        function serviceGetDetailsCallback(place, status) {
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: place.geometry.location
+                });
+                map.setCenter(place.geometry.location);
+                google.maps.event.addListener(marker, 'click', addListenerCallback);
+            }
+        }
+      
+        function addListenerCallback() {
+            infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                'Place ID: ' + place.place_id + '<br>' +
+                place.formatted_address + '</div>');
+            infowindow.open(map, this);
+        }
+    </script>
+    <!-- Key is associated with Google account 'citrixchalfont' -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=/*#API_KEY#*/&callback=initMap&libraries=places">
+    </script>
+    </body>
+</html>

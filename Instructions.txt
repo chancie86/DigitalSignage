@@ -1,0 +1,17 @@
+﻿
+Deliverable files
+All binaries required for this application are copied to the "bin\<platform>\<configuration>\Deliverables" folder.
+You will need to create your own Config.xml.
+
+Accounts used by this app...
+
+Weather
+- Source: http://openweathermap.org/
+- Account: citrixchalfont@gmail.com, pw: teacrate
+- api key: bc6685de21372714c263998cec6be183
+
+Traffic
+- Source: https://maps.googleapis.com/maps/api/js
+- Account: citrixchalfont, pw: teacrate
+- api key: AIzaSyCrCtIIRWjwfNPfdzCPPUn98hnOLxQGU_Y
+- PlaceId can be obtained via: https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder

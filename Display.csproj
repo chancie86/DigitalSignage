@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.props" Condition="Exists('packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.props')" />
+  <Import Project="packages\CefSharp.Common.57.0.0\build\CefSharp.Common.props" Condition="Exists('packages\CefSharp.Common.57.0.0\build\CefSharp.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D84A5044-9228-41D2-9682-608C84EF08B0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Display</RootNamespace>
+    <AssemblyName>Display</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+    <!-- Specific Build Instructions -->
+    <ProjectName>Display</ProjectName>
+    <BinariesRoot Condition=" '$(BinariesRoot)' == '' ">$(SolutionDir)Binaries</BinariesRoot>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <!-- Specific Build Instructions -->
+    <OutputPath>$(BinariesRoot)\$(Platform)\$(ProjectName)\bin\$(Configuration)</OutputPath>
+    <IntermediateOutputPath>$(BinariesRoot)\$(Platform)\$(ProjectName)\obj\$(Configuration)</IntermediateOutputPath>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+    <!-- Specific Build Instructions -->
+    <OutputPath>$(BinariesRoot)\$(Platform)\$(ProjectName)\bin\$(Configuration)</OutputPath>
+    <IntermediateOutputPath>$(BinariesRoot)\$(Platform)\$(ProjectName)\obj\$(Configuration)</IntermediateOutputPath>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Display.App</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CefSharp.Wpf, Version=57.0.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\CefSharp.Wpf.57.0.0\CefSharp\x64\CefSharp.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.PowerPoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 12.0\Visual Studio Tools for Office\PIA\Office15\Microsoft.Office.Interop.PowerPoint.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Configuration.cs" />
+    <Compile Include="Controls\AnalogueClock.xaml.cs">
+      <DependentUpon>AnalogueClock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HttpMethod.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="ViewModels\ChromeHtmlViewModel.cs" />
+    <Compile Include="ViewModels\DilbertDailyImageFromRssFeedViewModel.cs" />
+    <Compile Include="ViewModels\FunCalendarViewModel.cs" />
+    <Compile Include="ViewModels\Twitter\TweetSection.cs" />
+    <Compile Include="ViewModels\Twitter\TweetSectionType.cs" />
+    <Compile Include="ViewModels\Twitter\TweetViewModel.cs" />
+    <Compile Include="ViewModels\Twitter\TwitterViewModel.cs" />
+    <Compile Include="Views\ChromeHtmlView.xaml.cs">
+      <DependentUpon>ChromeHtmlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FunCalendarView.xaml.cs">
+      <DependentUpon>FunCalendarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HtmlView.xaml.cs">
+      <DependentUpon>HtmlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WindowHost.xaml.cs">
+      <DependentUpon>WindowHost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HashSetExtensions.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="ObservableCollectionExtensions.cs" />
+    <Compile Include="RestClient.cs" />
+    <Compile Include="TimeHelpers.cs" />
+    <Compile Include="ViewModels\Weather\DailyWeather.cs" />
+    <Compile Include="ViewModels\Weather\JsonContract.cs" />
+    <Compile Include="ViewModels\Weather\Units.cs" />
+    <Compile Include="ViewModels\Weather\WeatherDisplayViewModel.cs" />
+    <Compile Include="ViewModels\Weather\WeatherIcon.cs" />
+    <Compile Include="ViewModels\Weather\WeatherIconHelper.cs" />
+    <Compile Include="ViewModels\WebHelpers.cs" />
+    <Compile Include="ViewModels\BuildJobViewModel.cs" />
+    <Compile Include="ViewModels\BuildServerViewModel.cs" />
+    <Compile Include="ViewModels\Clocks\ClocksDisplayViewModel.cs" />
+    <Compile Include="ViewModels\Clocks\ClockViewModel.cs" />
+    <Compile Include="ViewModels\DailyImageFromRssFeedViewModel.cs" />
+    <Compile Include="ViewModels\DevOpsReactionsDailyImageFromRssFeedViewModel.cs" />
+    <Compile Include="ViewModels\CommitStripDailyImageFromRssFeedViewModel.cs" />
+    <Compile Include="ViewModels\DisplayBaseViewModel.cs" />
+    <Compile Include="ViewModels\GoogleTrafficViewModel.cs" />
+    <Compile Include="ViewModels\HtmlViewModel.cs" />
+    <Compile Include="ViewModels\Item.cs" />
+    <Compile Include="ViewModels\PowerPointDisplayViewModel.cs" />
+    <Compile Include="ViewModels\TeamCityHelpers.cs" />
+    <Compile Include="ViewModels\TeamCityProjectViewModel.cs" />
+    <Compile Include="ViewModels\TeamCityBuildJobViewModel.cs" />
+    <Compile Include="ViewModels\JenkinsBuildJobViewModel.cs" />
+    <Compile Include="ViewModels\MoneypennysViewModel.cs" />
+    <Compile Include="ViewModels\XkcdDailyImageFromRssFeedViewModel.cs" />
+    <Compile Include="Views\ClocksDisplayView.xaml.cs">
+      <DependentUpon>ClocksDisplayView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClockView.xaml.cs">
+      <DependentUpon>ClockView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BuildServerView.xaml.cs">
+      <DependentUpon>BuildServerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MoneypennysView.xaml.cs">
+      <DependentUpon>MoneypennysView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PowerPointDisplayView.xaml.cs">
+      <DependentUpon>PowerPointDisplayView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SlideShowView.xaml.cs">
+      <DependentUpon>SlideShowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TwitterView.xaml.cs">
+      <DependentUpon>TwitterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WeatherView.xaml.cs">
+      <DependentUpon>WeatherView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XmlExtensions.cs" />
+    <Page Include="Controls\AnalogueClock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChromeHtmlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FunCalendarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HtmlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\WindowHost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClocksDisplayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClockView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BuildServerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\SlideShowViewModel.cs" />
+    <Compile Include="Views\MainWindowView.xaml.cs">
+      <DependentUpon>MainWindowView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\MoneypennysView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PowerPointDisplayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SlideShowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TwitterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WeatherView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <EmbeddedResource Include="XmlSchemas\RSS20.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XmlSchemas\ConfigSchema.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XmlSchemas\MoneypennysSchema.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <EmbeddedResource Include="ViewModels\GoogleMap.html" />
+    <Resource Include="Images\moneypennys.png" />
+    <Resource Include="Instructions.txt" />
+    <Resource Include="Images\weather_clear.jpg" />
+    <Resource Include="Images\weather_clouds.jpg" />
+    <Resource Include="Images\weather_fog.jpg" />
+    <Resource Include="Images\weather_rain.jpg" />
+    <Resource Include="Images\weather_snow.jpg" />
+    <Resource Include="Images\weather_thunder.jpg" />
+    <Resource Include="Images\weather_overcast.jpg" />
+    <Content Include="Moneypennys.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WpfUtils\WpfUtils\WpfUtils.csproj">
+      <Project>{ef0d3529-785c-4a89-b3ce-5d44575d6929}</Project>
+      <Name>WpfUtils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  -->
+  <Target Name="AfterBuild">
+    <PropertyGroup>
+      <DeliverableDestination>"$(BinariesRoot)\Deliverables\$(Configuration)"</DeliverableDestination>
+    </PropertyGroup>
+    <!-- Create the Deliverables directory -->
+    <Exec Command="rmdir /Q /S $(DeliverableDestination)" />
+    <Exec Command="mkdir $(DeliverableDestination)" />
+    <!-- Chrome browser support files -->
+    <Exec Command="xcopy &quot;$(TargetDir)CefSharp*.exe&quot; $(DeliverableDestination)" />
+    <Exec Command="xcopy &quot;$(TargetDir)CefSharp*.dll&quot; $(DeliverableDestination)" />
+    <Exec Command="xcopy &quot;$(TargetDir)d3dcompiler_47.dll&quot; $(DeliverableDestination)" />
+    <Exec Command="xcopy &quot;$(TargetDir)chrome_elf.dll&quot; $(DeliverableDestination)" />
+    <Exec Command="xcopy &quot;$(TargetDir)widevinecdmadapter.dll&quot; $(DeliverableDestination)" />
+    <Exec Command="xcopy &quot;$(TargetDir)libcef.dll&quot; $(DeliverableDestination)" />
+    <Exec Command="xcopy &quot;$(TargetDir)libEGL.dll&quot; $(DeliverableDestination)" />
+    <Exec Command="xcopy &quot;$(TargetDir)libGLESv2.dll&quot; $(DeliverableDestination)" />
+    <Exec Command="xcopy &quot;$(TargetDir)icudtl.dat&quot; $(DeliverableDestination)" />
+    <Exec Command="xcopy &quot;$(TargetDir)cef*.pak&quot; $(DeliverableDestination)" />
+    <Exec Command="xcopy &quot;$(TargetDir)natives_blob.bin&quot; $(DeliverableDestination)" />
+    <Exec Command="xcopy &quot;$(TargetDir)snapshot_blob.bin&quot; $(DeliverableDestination)" />
+    <!-- NLog support files -->
+    <Exec Command="xcopy &quot;$(TargetDir)NLog.dll&quot; $(DeliverableDestination)" />
+    <!-- Display application -->
+    <Exec Command="xcopy &quot;$(TargetDir)Display.exe*&quot; $(DeliverableDestination)" />
+    <Exec Command="xcopy &quot;$(TargetDir)WpfUtils.dll&quot; $(DeliverableDestination)" />
+  </Target>
+  <Import Project="packages\cef.redist.x86.3.2987.1601\build\cef.redist.x86.targets" Condition="Exists('packages\cef.redist.x86.3.2987.1601\build\cef.redist.x86.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\cef.redist.x86.3.2987.1601\build\cef.redist.x86.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\cef.redist.x86.3.2987.1601\build\cef.redist.x86.targets'))" />
+    <Error Condition="!Exists('packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets'))" />
+    <Error Condition="!Exists('packages\CefSharp.Common.57.0.0\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\CefSharp.Common.57.0.0\build\CefSharp.Common.props'))" />
+    <Error Condition="!Exists('packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets'))" />
+    <Error Condition="!Exists('packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.props'))" />
+    <Error Condition="!Exists('packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets'))" />
+  </Target>
+  <Import Project="packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets" Condition="Exists('packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets')" />
+  <Import Project="packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets" Condition="Exists('packages\CefSharp.Common.57.0.0\build\CefSharp.Common.targets')" />
+  <Import Project="packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets" Condition="Exists('packages\CefSharp.Wpf.57.0.0\build\CefSharp.Wpf.targets')" />
+</Project>

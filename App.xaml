@@ -1,0 +1,11 @@
+﻿<Application x:Class="Display.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Startup="OnStartup">
+    <!--StartupUri="Views/MainWindowView.xaml"-->
+    <Application.Resources>
+         <Style TargetType="{x:Type TextBlock}">
+             <Setter Property="Foreground" Value="LightGray" />
+         </Style>
+    </Application.Resources>
+</Application>
